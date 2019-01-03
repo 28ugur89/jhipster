@@ -4,7 +4,7 @@ ENV SPRING_OUTPUT_ANSI_ENABLED=ALWAYS \
     JHIPSTER_SLEEP=0 \
     JAVA_OPTS=""
 
-# add directly the war deneme hay
+# add directly the war deneme haylaz
 ADD *.war /app.war
 
 EXPOSE 8080 5701/udp
