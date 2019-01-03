@@ -1,12 +1,14 @@
 version: '2'
 services:
     jhipster-mysql:
-        image: mysql:5.7.18
-        # volumes:
-        #     - ~/volumes/jhipster/jhipster/mysql/:/var/lib/mysql/
+        container_name: tombul
+        image: mysql
+        volumes:
+            - /Users/root/tmp/:/var/lib/mysql/
         environment:
             - MYSQL_USER=root
-            - MYSQL_ALLOW_EMPTY_PASSWORD=yes
+            - MYSQL_ROOT_PASSWORD=huawei123
+            - MYSQL_ALLOW_EMPTY_PASSWORD=no
             - MYSQL_DATABASE=jhipster
         ports:
             - 3306:3306
