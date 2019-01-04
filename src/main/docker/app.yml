@@ -16,6 +16,8 @@ services:
         extends:
             file: mysql.yml
             service: jhipster-mysql
+        networks:
+                 - hsos_net
 
 networks:
   hsos_net:

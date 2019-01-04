@@ -1,15 +1,15 @@
 'use strict';
- 
-angular.module('jhipsterApp').factory('ReservationService', ['$http', '$q', function($http, $q){
- 
-    var REST_SERVICE_URI = 'http://localhost:8080/api/reservations/';
-    var REST_SERVICE_URI2= 'http://localhost:8080/api/customers/';
-    var REST_SERVICE_URI3= 'http://localhost:8080/api/books/';
-    
-    
 
-    
- 
+angular.module('jhipsterApp').factory('ReservationService', ['$http', '$q', function($http, $q){
+    var splitUrl = window.location.href.split('/#/')[0];
+    var REST_SERVICE_URI = splitUrl + '/api/customers/';
+    var REST_SERVICE_URI2 = splitUrl + '/api/reservations/';
+    var REST_SERVICE_URI3 = splitUrl + '/api/books/';
+
+
+
+
+
     var factory = {
         fetchAllReservations: fetchAllReservations,
         createReservation: createReservation,
@@ -19,9 +19,9 @@ angular.module('jhipsterApp').factory('ReservationService', ['$http', '$q', func
         fetchAllNumbersBook:fetchAllNumbersBook
 
     };
- 
+
     return factory;
- 
+
     function fetchAllReservations() {
         var deferred = $q.defer();
         $http.get(REST_SERVICE_URI)
@@ -36,8 +36,8 @@ angular.module('jhipsterApp').factory('ReservationService', ['$http', '$q', func
         );
         return deferred.promise;
     }
-    
-    
+
+
     function fetchAllNumbers() {
         var deferred = $q.defer();
         $http.get(REST_SERVICE_URI2)
@@ -52,7 +52,7 @@ angular.module('jhipsterApp').factory('ReservationService', ['$http', '$q', func
         );
         return deferred.promise;
     }
-    
+
     function fetchAllNumbersBook() {
         var deferred = $q.defer();
         $http.get(REST_SERVICE_URI3)
@@ -67,12 +67,12 @@ angular.module('jhipsterApp').factory('ReservationService', ['$http', '$q', func
         );
         return deferred.promise;
     }
-    
-    
-    
-    
-  
- 
+
+
+
+
+
+
     function createReservation(reservation) {
         var deferred = $q.defer();
         $http.post(REST_SERVICE_URI, reservation)
@@ -87,8 +87,8 @@ angular.module('jhipsterApp').factory('ReservationService', ['$http', '$q', func
         );
         return deferred.promise;
     }
- 
- 
+
+
     function updateReservation(reservation, id) {
         var deferred = $q.defer();
         $http.put(REST_SERVICE_URI+id, reservation)
@@ -103,7 +103,7 @@ angular.module('jhipsterApp').factory('ReservationService', ['$http', '$q', func
         );
         return deferred.promise;
     }
- 
+
     function deleteReservation(id) {
         var deferred = $q.defer();
         $http.delete(REST_SERVICE_URI+id)
@@ -118,7 +118,7 @@ angular.module('jhipsterApp').factory('ReservationService', ['$http', '$q', func
         );
         return deferred.promise;
     }
- 
+
 }]);/**
- * 
+ *
  */

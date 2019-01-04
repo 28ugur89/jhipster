@@ -1,18 +1,19 @@
 'use strict';
- 
+
 angular.module('jhipsterApp').factory('BookService', ['$http', '$q', function($http, $q){
- 
-    var REST_SERVICE_URI = 'http://localhost:8080/api/books/';
- 
+
+    var splitUrl = window.location.href.split('/#/')[0];
+    var REST_SERVICE_URI = splitUrl + '/api/books/';
+
     var factory = {
         fetchAllBooks: fetchAllBooks,
         createBook: createBook,
         updateBook:updateBook,
         deleteBook:deleteBook
     };
- 
+
     return factory;
- 
+
     function fetchAllBooks() {
         var deferred = $q.defer();
         $http.get(REST_SERVICE_URI)
@@ -27,7 +28,7 @@ angular.module('jhipsterApp').factory('BookService', ['$http', '$q', function($h
         );
         return deferred.promise;
     }
- 
+
     function createBook(book) {
         var deferred = $q.defer();
         $http.post(REST_SERVICE_URI, book)
@@ -42,8 +43,8 @@ angular.module('jhipsterApp').factory('BookService', ['$http', '$q', function($h
         );
         return deferred.promise;
     }
- 
- 
+
+
     function updateBook(book, id) {
         var deferred = $q.defer();
         $http.put(REST_SERVICE_URI+id, book)
@@ -58,7 +59,7 @@ angular.module('jhipsterApp').factory('BookService', ['$http', '$q', function($h
         );
         return deferred.promise;
     }
- 
+
     function deleteBook(id) {
         var deferred = $q.defer();
         $http.delete(REST_SERVICE_URI+id)
@@ -73,5 +74,5 @@ angular.module('jhipsterApp').factory('BookService', ['$http', '$q', function($h
         );
         return deferred.promise;
     }
- 
+
 }]);

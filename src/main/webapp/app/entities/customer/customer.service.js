@@ -1,18 +1,18 @@
 'use strict';
- 
+
 angular.module('jhipsterApp').factory('CustomerService', ['$http', '$q', function($http, $q){
- 
-    var REST_SERVICE_URI = 'http://localhost:8080/api/customers/';
- 
+    var splitUrl = window.location.href.split('/#/')[0];
+    var REST_SERVICE_URI = splitUrl + '/api/customers/';
+
     var factory = {
         fetchAllCustomers: fetchAllCustomers,
         createCustomer: createCustomer,
         updateCustomer:updateCustomer,
         deleteCustomer:deleteCustomer
     };
- 
+
     return factory;
- 
+
     function fetchAllCustomers() {
         var deferred = $q.defer();
         $http.get(REST_SERVICE_URI)
@@ -27,7 +27,7 @@ angular.module('jhipsterApp').factory('CustomerService', ['$http', '$q', functio
         );
         return deferred.promise;
     }
- 
+
     function createCustomer(customer) {
         var deferred = $q.defer();
         $http.post(REST_SERVICE_URI, customer)
@@ -42,8 +42,8 @@ angular.module('jhipsterApp').factory('CustomerService', ['$http', '$q', functio
         );
         return deferred.promise;
     }
- 
- 
+
+
     function updateCustomer(customer, id) {
         var deferred = $q.defer();
         $http.put(REST_SERVICE_URI+id, customer)
@@ -58,7 +58,7 @@ angular.module('jhipsterApp').factory('CustomerService', ['$http', '$q', functio
         );
         return deferred.promise;
     }
- 
+
     function deleteCustomer(id) {
         var deferred = $q.defer();
         $http.delete(REST_SERVICE_URI+id)
@@ -73,5 +73,5 @@ angular.module('jhipsterApp').factory('CustomerService', ['$http', '$q', functio
         );
         return deferred.promise;
     }
- 
+
 }]);
